@@ -9,13 +9,13 @@ import pl.allegro.tech.boot.leader.only.api.LeadershipFactory;
 @AutoConfiguration
 public class LeaderOnlyConfiguration {
     @Bean
-    LeadershipProxyFactory leaderOnlyProxyFactory(LeadershipFactory leadershipFactory) {
+    static LeadershipProxyFactory leaderOnlyProxyFactory(LeadershipFactory leadershipFactory) {
         return new LeadershipProxyFactory(leadershipFactory);
     }
 
     @Bean
     @ConditionalOnBean(LeadershipProxyFactory.class)
-    LeaderOnlyBeanPostProcessor leaderOnlyBeanPostProcessor(LeadershipProxyFactory leadershipProxyFactory) {
+    static LeaderOnlyBeanPostProcessor leaderOnlyBeanPostProcessor(LeadershipProxyFactory leadershipProxyFactory) {
         return new LeaderOnlyBeanPostProcessor(leadershipProxyFactory);
     }
 }
